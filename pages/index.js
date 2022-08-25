@@ -56,6 +56,21 @@ export default function Home() {
                     </a>
                 </div>
             </nav>
+
+            <div>
+                <div
+                    className="drop-zone"
+                    // onClick={handleClick}
+                    // onChange={handleOnChange}
+                    // onDragOver={handleDragOver}
+                    // onDrop={handleDrop}
+                    // onDragLeave={handleLeave}
+                    // onDragEnd={handleEnd}
+                >
+                    <span className="drop-zone__prompt">Drop file here or click to upload</span>
+                    <input type="file" name="myFile" className="drop-zone__input" />
+                </div>
+            </div>
         </div>
     );
 }
