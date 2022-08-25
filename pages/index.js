@@ -1,10 +1,16 @@
 import Head from "next/head";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { BsFillPatchCheckFill, BsFillPatchExclamationFill } from "react-icons/bs";
+import Loader from "../components/Loader";
+import Score from "../components/Score";
 
 export default function Home() {
+    const [showScore, setShowScore] = useState(false);
+    // const [frontImage, setFrontImage] = useState("")
     const getScore = (evt) => {
         evt.preventDefault();
+        setShowScore(true);
     };
 
     useEffect(() => {
@@ -76,78 +82,128 @@ export default function Home() {
     }
 
     const [typeOfIdentity, changeTypeOfIdentity] = useState("Adhaar");
+    const [loading, setLoading] = useState(false);
 
     return (
-        <div>
-            <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded">
-                <div className="container flex flex-wrap justify-between items-center mx-auto">
-                    <a href="#" className="flex items-center">
-                        <span className="self-center text-xl font-semibold whitespace-nowrap">
-                            Document Quality Score
-                        </span>
-                    </a>
-                </div>
-            </nav>
+        <>
+            {!showScore && (
+                <div>
+                    <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded">
+                        <div className="container flex flex-wrap justify-between items-center mx-auto">
+                            <a href="#" className="flex items-center">
+                                <span className="self-center text-xl font-semibold whitespace-nowrap">
+                                    Document Quality Score
+                                </span>
+                            </a>
+                        </div>
+                    </nav>
 
-            <div className="flex flex-col items-center space-y-10 mt-28">
-                <span className="flex space-x-8">
-                    <div className="drop-zone">
-                        <span className="drop-zone__prompt">
-                            Drop front image of identity here or click to upload
+                    <div className="flex flex-col items-center space-y-10 mt-28">
+                        <span className="flex space-x-8">
+                            <div className="drop-zone">
+                                <span className="drop-zone__prompt">
+                                    Drop front image of identity here or click to upload
+                                </span>
+                                <input type="file" name="myFile" className="drop-zone__input"  />
+                            </div>
+                            <div className="drop-zone">
+                                <span className="drop-zone__prompt">
+                                    Drop back image of identity here or click to upload
+                                </span>
+                                <input type="file" name="myFile" className="drop-zone__input" />
+                            </div>
                         </span>
-                        <input type="file" name="myFile" className="drop-zone__input" />
+
+                        <div className="flex flex-col items-center space-y-4">
+                            <span>
+                                <select
+                                    id="dropdownDefault"
+                                    data-dropdown-toggle="dropdown"
+                                    className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm pl-4 pr-5 py-2.5 text-center inline-flex items-center"
+                                    type="button"
+                                    value={typeOfIdentity}
+                                    onChange={(e) => {
+                                        changeTypeOfIdentity(e.target.value);
+                                    }}
+                                >
+                                    <option
+                                        className="block py-2 text-center hover:bg-gray-100"
+                                        value={"Adhaar"}
+                                    >
+                                        Adhaar
+                                    </option>
+                                    <option
+                                        className="block py-2 text-center hover:bg-gray-100"
+                                        value={"Pan Card"}
+                                    >
+                                        Pan Card
+                                    </option>
+                                    <option
+                                        className="block py-2 text-center hover:bg-gray-100"
+                                        value={"Passport"}
+                                    >
+                                        Passport
+                                    </option>
+                                </select>
+                            </span>
+
+                            <span>
+                                <button
+                                    onClick={getScore}
+                                    className="block py-2 px-4 bg-white border-2 rounded-xl border-blue-800 hover:bg-blue-600"
+                                >
+                                    Get Score
+                                </button>
+                            </span>
+                        </div>
                     </div>
-                    <div className="drop-zone">
-                        <span className="drop-zone__prompt">
-                            Drop back image of identity here or click to upload
-                        </span>
-                        <input type="file" name="myFile" className="drop-zone__input" />
-                    </div>
-                </span>
-
-                <div className="flex flex-col items-center space-y-4">
-                    <span>
-                        <select
-                            id="dropdownDefault"
-                            data-dropdown-toggle="dropdown"
-                            className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm pl-4 pr-5 py-2.5 text-center inline-flex items-center"
-                            type="button"
-                            value={typeOfIdentity}
-                            onChange={(e) => {
-                                changeTypeOfIdentity(e.target.value);
-                            }}
-                        >
-                            <option
-                                className="block py-2 text-center hover:bg-gray-100"
-                                value={"Adhaar"}
-                            >
-                                Adhaar
-                            </option>
-                            <option
-                                className="block py-2 text-center hover:bg-gray-100"
-                                value={"Pan Card"}
-                            >
-                                Pan Card
-                            </option>
-                            <option
-                                className="block py-2 text-center hover:bg-gray-100"
-                                value={"Passport"}
-                            >
-                                Passport
-                            </option>
-                        </select>
-                    </span>
-
-                    <span>
-                        <button
-                            onClick={getScore}
-                            className="block py-2 px-4 bg-white border-2 rounded-xl border-blue-800 hover:bg-blue-600"
-                        >
-                            Get Score
-                        </button>
-                    </span>
                 </div>
-            </div>
-        </div>
+            )}
+
+            {showScore && (
+                <div>
+                    <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded">
+                        <div className="container flex flex-wrap justify-between items-center mx-auto">
+                            <a href="#" className="flex items-center">
+                                <span className="self-center text-xl font-semibold whitespace-nowrap">
+                                    Document Quality Score
+                                </span>
+                            </a>
+                        </div>
+                    </nav>
+
+                    {loading && <Loader />}
+
+                    {!loading && (
+                        <div className="my-20">
+                            <p className="font-medium leading-tight text-5xl mt-0 mb-2 text-center text-blue-600">
+                                Your Score: {"70%"}
+                                {/* <Score score={50} /> */}
+                            </p>
+
+                            <div className="mx-10 my-40 p-10 bg-blue-300 rounded-xl space-y-3">
+                                <p className="flex justify-between">
+                                    Blur Check:
+                                    <span>{"70%"}</span>
+                                </p>
+                                <p className="flex justify-between">
+                                    Arteffect Check:{" "}
+                                    <span>
+                                        {/* <BsFillPatchExclamationFill size={18} /> */}
+                                        <BsFillPatchCheckFill size={18} />
+                                    </span>
+                                </p>
+                                <p className="flex justify-between">
+                                    Field Check:{" "}
+                                    <span>
+                                        <BsFillPatchCheckFill size={18} />
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            )}
+        </>
     );
 }
