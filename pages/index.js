@@ -112,13 +112,13 @@ export default function Home() {
                             type="button"
                         >
                             <option className="block py-2 text-center hover:bg-gray-100">
-                                Proof of Identity
+                                Adhaar
                             </option>
                             <option className="block py-2 text-center hover:bg-gray-100">
-                                Proof of Address
+                                Pan Card
                             </option>
                             <option className="block py-2 text-center hover:bg-gray-100">
-                                Proof of Birth
+                                Passport
                             </option>
                         </select>
                     </span>
