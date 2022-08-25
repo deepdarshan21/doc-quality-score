@@ -45,6 +45,36 @@ export default function Home() {
         });
     });
 
+    function updateThumbnail(dropZoneElement, file) {
+        let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
+
+        // First time - remove the prompt
+        if (dropZoneElement.querySelector(".drop-zone__prompt")) {
+            dropZoneElement.querySelector(".drop-zone__prompt").remove();
+        }
+
+        // First time - there is no thumbnail element, so lets create it
+        if (!thumbnailElement) {
+            thumbnailElement = document.createElement("div");
+            thumbnailElement.classList.add("drop-zone__thumb");
+            dropZoneElement.appendChild(thumbnailElement);
+        }
+
+        // thumbnailElement.dataset.label = file.name;
+
+        // Show thumbnail for image files
+        if (file.type.startsWith("image/")) {
+            const reader = new FileReader();
+
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
+            };
+        } else {
+            thumbnailElement.style.backgroundImage = null;
+        }
+    }
+
     return (
         <div>
             <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded">
@@ -57,19 +87,21 @@ export default function Home() {
                 </div>
             </nav>
 
-            <div className="flex flex-col items-center space-y-10">
-                <div
-                    className="drop-zone"
-                    // onClick={handleClick}
-                    // onChange={handleOnChange}
-                    // onDragOver={handleDragOver}
-                    // onDrop={handleDrop}
-                    // onDragLeave={handleLeave}
-                    // onDragEnd={handleEnd}
-                >
-                    <span className="drop-zone__prompt">Drop file here or click to upload</span>
-                    <input type="file" name="myFile" className="drop-zone__input" />
-                </div>
+            <div className="flex flex-col items-center space-y-10 mt-28">
+                <span className="flex space-x-8">
+                    <div className="drop-zone">
+                        <span className="drop-zone__prompt">
+                            Drop front image of identity here or click to upload
+                        </span>
+                        <input type="file" name="myFile" className="drop-zone__input" />
+                    </div>
+                    <div className="drop-zone">
+                        <span className="drop-zone__prompt">
+                            Drop back image of identity here or click to upload
+                        </span>
+                        <input type="file" name="myFile" className="drop-zone__input" />
+                    </div>
+                </span>
 
                 <div className="flex flex-col items-center space-y-4">
                     <span>
@@ -79,9 +111,6 @@ export default function Home() {
                             className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm pl-4 pr-5 py-2.5 text-center inline-flex items-center"
                             type="button"
                         >
-                            <option disabled className="block py-2 text-center hover:bg-gray-100">
-                                Proof of
-                            </option>
                             <option className="block py-2 text-center hover:bg-gray-100">
                                 Proof of Identity
                             </option>
