@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
     const getScore = (evt) => {
@@ -75,6 +75,8 @@ export default function Home() {
         }
     }
 
+    const [typeOfIdentity, changeTypeOfIdentity] = useState("Adhaar");
+
     return (
         <div>
             <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded">
@@ -110,14 +112,27 @@ export default function Home() {
                             data-dropdown-toggle="dropdown"
                             className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm pl-4 pr-5 py-2.5 text-center inline-flex items-center"
                             type="button"
+                            value={typeOfIdentity}
+                            onChange={(e) => {
+                                changeTypeOfIdentity(e.target.value);
+                            }}
                         >
-                            <option className="block py-2 text-center hover:bg-gray-100">
+                            <option
+                                className="block py-2 text-center hover:bg-gray-100"
+                                value={"Adhaar"}
+                            >
                                 Adhaar
                             </option>
-                            <option className="block py-2 text-center hover:bg-gray-100">
+                            <option
+                                className="block py-2 text-center hover:bg-gray-100"
+                                value={"Pan Card"}
+                            >
                                 Pan Card
                             </option>
-                            <option className="block py-2 text-center hover:bg-gray-100">
+                            <option
+                                className="block py-2 text-center hover:bg-gray-100"
+                                value={"Passport"}
+                            >
                                 Passport
                             </option>
                         </select>
