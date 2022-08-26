@@ -35,7 +35,7 @@ export default function Result() {
             <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded">
                 <div className="container flex flex-wrap justify-between items-center mx-auto">
                     <a href="#" className="flex items-center">
-                        <span className="self-center text-xl font-semibold whitespace-nowrap">
+                        <span className="self-center text-2xl font-semibold whitespace-nowrap">
                             Document Quality Score
                         </span>
                     </a>
@@ -83,7 +83,7 @@ export default function Result() {
                         <div className="drag-file-area">
                             <span className="material-icons-outlined upload-icon">
                                 {" "}
-                                file_upload{" "}
+                                Image Upload{" "}
                             </span>
                             <h3 className="dynamic-message"> Drag & drop any file here </h3>
                             <label className="label">
