@@ -3,11 +3,13 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { BsFillPatchCheckFill, BsFillPatchExclamationFill } from "react-icons/bs";
 import Loader from "../components/Loader";
-import Score from "../components/Score";
+// import Score from "../components/Score";
 
 export default function Home() {
     const [showScore, setShowScore] = useState(false);
-    // const [frontImage, setFrontImage] = useState("")
+    const [frontImage, setFrontImage] = useState("");
+    const [backImage, setBackImage] = useState({});
+
     const getScore = (evt) => {
         evt.preventDefault();
         setShowScore(true);
@@ -104,13 +106,31 @@ export default function Home() {
                                 <span className="drop-zone__prompt">
                                     Drop front image of identity here or click to upload
                                 </span>
-                                <input type="file" name="myFile" className="drop-zone__input"  />
+                                <input
+                                    type="file"
+                                    name="myFile"
+                                    className="drop-zone__input"
+                                    accept="image/*"
+                                    onChange={(e) => {
+                                        setFrontImage(e.target.files[0]);
+                                    }}
+                                    onDrop={() => {
+                                        console.log("hey buddy");
+                                    }}
+                                />
                             </div>
                             <div className="drop-zone">
                                 <span className="drop-zone__prompt">
                                     Drop back image of identity here or click to upload
                                 </span>
-                                <input type="file" name="myFile" className="drop-zone__input" />
+                                <input
+                                    type="file"
+                                    name="myFile"
+                                    className="drop-zone__input"
+                                    onChange={(e) => {
+                                        setBackImage(e.target.files[0]);
+                                    }}
+                                />
                             </div>
                         </span>
 
@@ -178,7 +198,7 @@ export default function Home() {
                         <div className="my-20">
                             <p className="font-medium leading-tight text-5xl mt-0 mb-2 text-center text-blue-600">
                                 Your Score: {"70%"}
-                                {/* <Score score={50} /> */}
+                                {/* <Score  score={50} /> */}
                             </p>
 
                             <div className="mx-10 my-40 p-10 bg-blue-300 rounded-xl space-y-3">
