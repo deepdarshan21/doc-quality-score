@@ -62,11 +62,11 @@ export default function Result() {
     };
 
     return (
-        <>
-            <nav className="bg-gray-200 border-gray-200 px-2 sm:px-4 py-2.5 rounded">
+        <div className="bg-[#E5EDF9] h-[100vh]">
+            <nav className="bg-[#1565C0] border-gray-200 px-2 sm:px-4 py-2.5 rounded">
                 <div className="container flex flex-wrap justify-between items-center mx-10">
                     <a href="" className="flex items-center">
-                        <span className="self-center text-2xl font-sans font-bold whitespace-nowrap">
+                        <span className="text-white self-center text-2xl font-sans font-bold whitespace-nowrap">
                             Document Quality Score
                         </span>
                     </a>
@@ -250,7 +250,7 @@ export default function Result() {
                                 <select
                                     id="dropdownDefault"
                                     data-dropdown-toggle="dropdown"
-                                    className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm pl-4 pr-5 py-2.5 text-center inline-flex items-center"
+                                    className="text-white text-md bg-[#1565C0] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg pl-4 pr-6 py-2.5 text-center inline-flex items-center"
                                     type="button"
                                     value={typeOfIdentity}
                                     onChange={(e) => {
@@ -290,6 +290,6 @@ export default function Result() {
                     </div>
                 </div>
             )}
-        </>
+        </div>
     );
 }
