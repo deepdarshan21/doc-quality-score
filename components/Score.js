@@ -11,5 +11,13 @@ export default function Score({score}) {
         }
         wrapper[0].innerHTML += `<p class="selected percent-text text-demo">${score}%</p>`;
     });
-    return <p className="progress bg-gray-300"></p>;
+    return (
+        <div class="box">
+            <div class="circle" data-dots="100" data-percent="90" style="--bgColor: #ff0070"></div>
+            <div class="text">
+                <h2>90%</h2>
+                <small>HTML</small>
+            </div>
+        </div>
+    );
 }

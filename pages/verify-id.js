@@ -14,6 +14,10 @@ export default function Result() {
 
     const getScore = async (evt) => {
         evt.preventDefault();
+        if (uploadedFiles.length === 0) {
+            alert("Select atleast one image");
+            return;
+        }
         let form_data = new FormData();
 
         form_data.append("image", uploadedFiles[0]);
@@ -34,7 +38,7 @@ export default function Result() {
         }
 
         axios
-            .post(`http://0045-34-86-16-45.ngrok.io/api/sendIdentity/${typeOfIdentity}`, {
+            .post(`http://0206-35-245-198-48.ngrok.io/api/sendIdentity/${typeOfIdentity}`, {
                 image: data.url,
             })
             .then((response) => {
@@ -285,7 +289,7 @@ export default function Result() {
                             <span>
                                 <button
                                     onClick={getScore}
-                                    className="block py-2 px-4 mt-0 bg-white border-2 rounded-xl border-blue-800 hover:bg-blue-600"
+                                    className="text-white text-md bg-[#1565C0] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg pl-4 pr-6 py-2 text-center inline-flex items-center"
                                 >
                                     Get Score
                                 </button>
