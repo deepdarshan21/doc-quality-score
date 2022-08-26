@@ -80,17 +80,17 @@ export default function Result() {
                     {!loading && (
                         <div className="my-20">
                             <p className="font-medium leading-tight text-5xl mt-0 mb-2 text-center text-blue-600">
-                                Your Score: {score.quality}
+                                Your Score: {(score.quality * 100).toFixed(2)}%
                                 {/* <Score score={50} /> */}
                             </p>
 
                             <div className="mx-10 my-40 p-10 bg-blue-300 rounded-xl space-y-3">
                                 <p className="flex justify-between">
                                     Blur Check:
-                                    <span>{"70%"}</span>
+                                    <span>{(score.quality * 100).toFixed(2)}%</span>
                                 </p>
                                 <p className="flex justify-between">
-                                    Arteffect Check:{" "}
+                                    Text Extration:{" "}
                                     <span>
                                         {/* <BsFillPatchExclamationFill size={18} /> */}
                                         <BsFillPatchCheckFill size={18} />
@@ -99,7 +99,11 @@ export default function Result() {
                                 <p className="flex justify-between">
                                     Field Check:{" "}
                                     <span>
-                                        <BsFillPatchCheckFill size={18} />
+                                        {score.required_field ? (
+                                            <BsFillPatchCheckFill size={18} />
+                                        ) : (
+                                            <BsFillPatchExclamationFill size={18} />
+                                        )}
                                     </span>
                                 </p>
                             </div>
